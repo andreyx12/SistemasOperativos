@@ -1,0 +1,34 @@
+
+
+<div class="container">
+
+     <div class="row">
+          <div class="input-field col s12">
+               <i class="material-icons prefix">search</i>
+               <input id="icon_prefix" type="text" class="autocomplete">
+               <label for="icon_prefix">Buscar</label>
+          </div>
+     </div>
+
+
+     {{#each datasource}}
+
+               {{#if_even @index}}
+
+                    <div class="row">
+                         <div class="col m6">
+                              {{>productdetail this}}
+                         </div>
+               {{else}}
+                         <div class="col m6">
+                              {{>productdetail this}}
+                         </div>
+                    </div>
+               {{/if_even}}
+
+          {{else}}
+
+               <p class="center">- No hay productos para mostrar -</p>
+
+     {{/each}}
+</div>

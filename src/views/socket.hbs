@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Socket</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+       <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>   
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/socket.js"></script>
+    <style>
+    body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+
+    main {
+        flex: 1 0 auto;
+    }
+
+    .padding-top-none {
+        padding-top: 0px !important;
+    }
+
+    .main-color {
+        background-color: #f5f5f5;
+    }
+
+    .form-color {
+        padding: 20px;
+        background-color: #ffffff;
+    }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        {{!-- <nav>
+            <div class="nav-wrapper indigo">
+            <a href="#" class="brand-logo center">Chat</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a id="usernameId"></a></li>
+            </ul>
+            <ul class="right hide-on-med-and-down">
+                <li><a id="connectedUsersId"></a></li>
+                <li><a href="#" data-target="sidenav-2" class="right sidenav-trigger show-on-medium-and-up"><i class="material-icons">menu</i></a></li>
+            </ul>
+            </div>
+        </nav> --}}
+
+           <nav>
+            <div class="nav-wrapper indigo">
+            <a href="#!" class="brand-logo center">Chat</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a id="usernameId"></a></li>
+            </ul>
+            <a href="#" data-target="sidenav-2" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a id="connectedUsersId"></a></li>
+                <li><a href="#" data-target="sidenav-2" class="right sidenav-trigger show-on-medium-and-up"><i class="material-icons">menu</i></a></li>
+            </ul>
+            </div>
+        </nav>
+
+    </header>
+
+    <main class="main-color">
+
+        <div class="fixed-action-btn">
+            <a class="btn tooltipped btn-floating btn-large red pulse" id="closeSessionId" data-position="top" data-tooltip="Logout">
+                <i class="large material-icons">exit_to_app</i>
+            </a>
+        </div>
+
+        <ul id="sidenav-2" class="sidenav">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                    </div>
+                    {{!-- <a href="#name"><span class="white-text name">John Doe</span></a>
+                    <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a> --}}
+                </div>
+            </li>
+            <li><a class="subheader"><i class="material-icons">chat</i>Chat options</a></li>
+            {{!-- <li><a href="#!">Second Link</a></li> --}}
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Online users</a></li>
+            {{!-- <li><a class="waves-effect" href="#!">Third Link With Waves</a></li> --}}
+            <li>
+                <ul id="sidenav-3">
+                </ul>
+            </li>
+        </ul>
+            
+        <div class="container z-depth-2 form-color card-chat">
+            <h6>Chat messages</h6>
+            <ul id="chatMessagesId"></ul>
+        </div>
+
+        <div id="chatMessagesFormId" class="container z-depth-2 form-color hide card-chat">
+                <div id="usernameChatId"></div>
+                <input id="usernameChatHiddenId" type="hidden"/>
+                <input id="usernameMessageDescriptionId" placeholder="Description" type="text"/>
+                <button class="btn waves-effect waves-light" id="btnSendMessageToUserId">Enviar
+                    <i class="material-icons right">send</i>
+                </button>
+        </div>
+    </main>
+
+     <footer class="page-footer padding-top-none indigo">
+          <div class="footer-copyright">
+            <div class="container">
+            © 2019 Copyright
+            {{!-- <a class="grey-text text-lighten-4 right" id="closeSessionId"> <i class="material-icons">exit_to_app</i></a> --}}
+            </div>
+          </div>
+        </footer>
+</body>
+
+</html>

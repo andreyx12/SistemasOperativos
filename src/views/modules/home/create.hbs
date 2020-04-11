@@ -1,0 +1,27 @@
+
+
+
+
+
+{{#if errorMessage}}
+    <div>
+        {{errorMessage}}
+    </div>
+{{/if}}
+
+<div class="container">
+    <form action='/product/create' method='post' enctype="multipart/form-data">
+
+        <input type="text" name="name" value="{{product.name}}">
+        <input type="text" name="description" value="{{product.description}}">
+        <input type="date" name="expirationDate" value="{{product.expirationDate}}">
+        
+        <input type="file" name="imageFile" accept="image/x-png,image/gif,image/jpeg" required>
+
+        <input type="submit" value="Agregar"/>
+    </form>
+</div>
+
+{{#if product.imagePath}}
+    <img src="/uploads/{{product.imagePath}}" name="image">
+{{/if}}

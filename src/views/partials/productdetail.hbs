@@ -1,0 +1,21 @@
+
+
+{{!-- https://www.tecnohotelnews.com/wp-content/uploads/2018/04/siete-claves-para-ofrecer-platos-saludables-atractivos-a-los-comensales.jpg --}}
+ <div class="card" id="id{{this._id}}">
+     <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" width="200" height="200" src="/uploads/{{this.imagePath}}">
+    </div>
+    <div class="card-content">
+      {{!-- <i class="material-icons">remove_red_eye</i> --}}
+      <span class="card-title activator grey-text text-darken-4">{{this.name}}<i class="material-icons right">more_vert</i></span>
+      <a class="waves-effect waves-light btn"><i class="material-icons left">attach_money</i>Ofertar</a>
+      <label>
+        <div class="id{{this._id}} right"></div>
+      </label>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">{{this.name}}<i class="material-icons right">close</i></span>
+      <p>{{this.description}}</p>
+    </div>
+  </div>
+  <input type="hidden" class="param-class" name="id{{this._id}}" value="{{this.expirationDate}}"/>

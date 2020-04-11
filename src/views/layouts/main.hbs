@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Main</title>    
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="/libs/materialize-css/css/materialize.min.css"  media="screen,projection"/>
+      <!--Import main css-->
+      <link rel="stylesheet" href="/css/main.css">
+
+      <script type="text/javascript" src="/libs/jquery/jquery-3.4.1.min.js"></script>
+
+      <script src="/socket.io/socket.io.js"></script>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+
+    <header>
+        <nav class="green darken-1">
+            <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">Logo</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            {{!-- <ul class="right hide-on-med-and-down">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/home">Agregar</a></li>
+                <li><a href="collapsible.html">Link1</a></li>
+                <li><a href="mobile.html">Link2</a></li>
+            </ul> --}}
+            </div>
+        </nav>
+
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/home">Agregar</a></li>
+            <li><a href="collapsible.html">Link1</a></li>
+            <li><a href="mobile.html">Link2</a></li>
+        </ul>
+    </header>
+
+    <main>
+        {{>sidenav}}
+        {{{body}}}
+    </main>
+
+    <footer class="page-footer green darken-1">
+            <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                <h5 class="white-text">Info</h5>
+                <p class="grey-text text-lighten-4">Info detalle</p>
+                </div>
+            </div>
+            </div>
+            <div class="footer-copyright">
+            <div class="container">
+            © 2020 Copyright
+            {{!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> --}}
+            </div>
+            </div>
+    </footer>
+
+
+      <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="/libs/materialize-css/js/materialize.min.js"></script>
+      <script type="text/javascript" src="/libs/countdown/jquery.plugin.min.js"></script>
+      <script type="text/javascript" src="/libs/countdown/jquery.countdown.min.js"></script>
+      <script type="text/javascript" src="/libs/countdown/jquery.countdown-es.js"></script>
+      <script src="/js/home/home.js"></script>
+      <script src="/js/home/sockets.js"></script>
+      <script src="https://unpkg.com/moment"></script>
+</body>
+
+</html>
