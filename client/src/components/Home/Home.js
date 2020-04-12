@@ -27,6 +27,8 @@ import StatusDrawer from '../Home/StatusDrawer';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Grid } from '@material-ui/core';
 import * as Constants from '../Utils/Constants';
+import 'font-awesome/css/font-awesome.min.css';
+import Laptop from '@material-ui/icons/Laptop';
 
 const drawerWidth = 300;
 
@@ -206,13 +208,14 @@ class Home extends Component {
 
     render() {
 
-        return (
+        return (          
             <div className={this.props.classes.root}>
             <CssBaseline />
             <AppBar position="fixed" className={this.props.classes.appBar}>
               <Toolbar>
+              <Laptop ></Laptop>
                 <Typography variant="h6" className={this.props.classes.title}>
-                  Proyecto Sistemas Operativos
+                &nbsp; Proyecto Sistemas Operativos
                 </Typography>
                 {/* <div className={this.props.classes.search}>
                   <div className={this.props.classes.searchIcon}>
