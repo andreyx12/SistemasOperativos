@@ -64,11 +64,6 @@ function ProductElement(props) {
                 {props.data.name.charAt(0)}
             </Avatar>
             }
-            action={
-            <IconButton aria-label="settings">
-                <MoreVertIcon />
-            </IconButton>
-            }
             title={props.data.name}
             subheader={"Expira: " + new Date(props.data.expirationDate).toLocaleDateString('en-GB')}
         />
@@ -77,7 +72,10 @@ function ProductElement(props) {
             image={"/uploads/" + props.data.imagePath}
             title="Paella dish"
         />
-        <CardContent>
+        <CardContent>       
+            <Typography variant="h6">
+              {"Último valor ofertado: $"+ props.data.amount.$numberDecimal } 
+            </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {props.data.description}
             </Typography>
