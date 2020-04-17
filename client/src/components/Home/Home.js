@@ -118,7 +118,7 @@ class Home extends Component {
             showLoading: true,
             retryFlag: false,
             connectedUsers: '',
-            activityStatusDrawer: ['Auto de carreras vendido', 'Set de mesa con sillas de bano vendido']
+            activityStatusDrawer: ['Auto de carreras vendido', 'Set de mesa con sillas de baño vendido']
         };
         this.onItemClickHandler = this.onItemClickHandler.bind(this)
         this.getProductsResponse = this.getProductsResponse.bind(this)

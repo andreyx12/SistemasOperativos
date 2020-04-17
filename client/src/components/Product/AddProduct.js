@@ -36,6 +36,7 @@ class AddProduct extends Component {
             description: '',
             expirationDate: '',
             imageFile: '',
+            amount: '',
             openSuccessMessage: false
         };
         this.handleChange = this.handleChange.bind(this);
@@ -62,6 +63,7 @@ class AddProduct extends Component {
                 description: '',
                 expirationDate: '',
                 imageFile: '',
+                amount: '',
                 openSuccessMessage: true
             })
         }
@@ -70,14 +72,14 @@ class AddProduct extends Component {
     onSubmit = (e) => {
 
         e.preventDefault();
-        const { name, description, expirationDate, imageFile, } = this.state;
+        const { name, description, expirationDate, imageFile, amount } = this.state;
         let formData = new FormData();
   
         formData.append('name', name);
         formData.append('description', description);
         formData.append('expirationDate', expirationDate);
         formData.append('imageFile', imageFile);
-
+        formData.append('amount', amount);
         ProductsDAO.createProduct(Constants.CREATE_PRODUCT_URL ,formData, this.createProductSuccessCallback);
     };
 
@@ -136,19 +138,38 @@ class AddProduct extends Component {
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <TextField
-                                label="Descripción"
-                                type="text"
-                                name="description"
-                                fullWidth
-                                required={true}
-                                variant="outlined"
-                                className={this.props.classes.textField}
-                                onChange={this.handleChange} 
-                                value={this.state.description}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
+                            label="Descripción"
+                            type="text"
+                            name="description"
+                            fullWidth
+                            required={true}
+                            variant="outlined"
+                            className={this.props.classes.textField}
+                            onChange={this.handleChange} 
+                            value={this.state.description}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                             />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                       <TextField
+                            label="Monto a subastar"
+                            type="number"
+                            name="amount"
+                            fullWidth
+                            required={true}
+                            variant="outlined"
+                            className={this.props.classes.textField}
+                            onChange={this.handleChange}
+                            value={this.state.amount}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            inputProps={{
+                                    maxLength: 20,
+                                }}
+                         />
                     </Grid>
                     <Grid item xs={12} md={6}>
                          <TextField

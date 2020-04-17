@@ -78,7 +78,7 @@ router.post('/product/create', upload.single('imageFile'), async (req, res) => {
         status: true,
         imagePath: req.file.filename,
         views: 0,
-        amount: 0.00
+        amount: parseFloat(req.body.amount)
     })
     product.save(function (err) {
         if (err) {

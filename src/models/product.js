@@ -26,8 +26,9 @@ var ProductSchema = new Schema({
         type: Number
     },
     amount: { 
-        type: mongoose.Types.Decimal128
+        type: mongoose.Types.Decimal128, 
+        required: true 
     }
 });
 
-module.exports = mongoose.model('Product', ProductSchema);
+module.exports = mongoose.model('Product', ProductSchema); 
