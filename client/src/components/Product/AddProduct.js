@@ -160,7 +160,7 @@ class AddProduct extends Component {
                     </Grid>
                     <Grid item xs={12} md={6}>
                        <TextField
-                            label="Monto a subastar"
+                            label="Monto inicial a subastar"
                             type="number"
                             name="amount"
                             fullWidth

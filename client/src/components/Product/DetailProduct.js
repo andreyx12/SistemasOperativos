@@ -9,6 +9,17 @@ import { withStyles } from "@material-ui/core/styles";
 import ProductsDAO from '../Product/ProductsDao';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import { spacing } from '@material-ui/system';
+import Box from '@material-ui/core/Box';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const styles = theme => ({
     root: {
@@ -18,6 +29,10 @@ const styles = theme => ({
         height: 0,
         paddingTop: '56.25%', // 16:9
     },
+    buttonPadding: {    
+        padding: '30px',   
+  },
+
 });
 
 class DetailProduct extends Component {
@@ -26,13 +41,16 @@ class DetailProduct extends Component {
         super(props)
         this.state = {
             comments: [],
-            commentsLoading: true
+            commentsLoading: true,
+            num1: 0,
+            result: 0,
         };
         this.onClickSendComment = this.onClickSendComment.bind(this);
         this.createCommentSuccessCalback = this.createCommentSuccessCalback.bind(this);
         this.getComments = this.getComments.bind(this);
         this.getCommentsSuccessCalback = this.getCommentsSuccessCalback.bind(this);
         this.socketGetNewComment = this.socketGetNewComment.bind(this);
+        this.handlenumChange = this.handlenumChange.bind(this);
     }
 
     componentDidMount() {
@@ -73,6 +91,24 @@ class DetailProduct extends Component {
         }
     };
 
+    addAction=()=>{
+        this.setState({result: this.state.num1 + this.props.amount })
+    }
+
+    handlenumChange (evt) {
+        console.log(evt.target.value);
+        this.setState({ num1: Number(evt.target.value) });
+    }
+
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        this.setState({
+            openSuccessMessage: false
+        })    
+    };
+
     render() {
         return (
             <Grid container spacing={3}>
@@ -85,11 +121,11 @@ class DetailProduct extends Component {
                         />
                     </Card>
                 </Grid>
-                <Grid item md={12} xs={12}>
+                <Grid item md={6} xs={6}>
                     <Card>
                         <CardContent>
                             <Typography variant="h5" component="h2">
-                              Valor inicial: ${this.props.selectedProduct.amount.$numberDecimal}
+                              Precio Actual: ${this.props.selectedProduct.amount.$numberDecimal}
                             </Typography>
                             <Typography>
                                 Nombre del producto: {this.props.selectedProduct.name}
@@ -102,8 +138,50 @@ class DetailProduct extends Component {
                             </Typography>
                         </CardContent>
                     </Card>
-
                 </Grid>
+
+                <Grid item md={6} xs={6}>
+                    <Card>
+                        <CardContent>
+                            <TextField
+                                label="Ingrese el monto a pujar"
+                                type="number"
+                                name="amount"
+                                fullWidth
+                                required={true}
+                                variant="outlined"
+                                className={this.props.classes.textField}
+                                onChange={this.handlenumChange}
+                                value={this.state.amount}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                inputProps={{
+                                        maxLength: 20,
+                                    }}
+                            />
+                            <Box mt={1.5} mb={-0.1} >
+                                <Button
+                                    type='submit'
+                                    variant="contained"
+                                    color="primary"
+                                    size="large"
+                                    required={true}
+                                    className={this.props.classes.btnAccept}
+                                    onClick={ () => this.addAction}
+                                    startIcon={<MonetizationOnIcon />}
+                                >
+                                    Pujar
+                                </Button>
+                            </Box>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Snackbar onClose={this.handleClose} open={this.state.openSuccessMessage} autoHideDuration={3000}>
+                    <Alert onClose={this.handleClose} severity="success">
+                        ¡Puja realizada exitósamente!
+                    </Alert>
+                </Snackbar>
                 <Grid item md={12} xs={12}>
                     { this.state.commentsLoading ?
                         <Grid container justify='center' alignItems='center'>
