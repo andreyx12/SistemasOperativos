@@ -36,10 +36,11 @@ class AddProduct extends Component {
             description: '',
             expirationDate: '',
             imageFile: '',
-            amount: '',
+            amount:'',
             openSuccessMessage: false
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleChange2 = this.handleChange2.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.createProductSuccessCallback = this.createProductSuccessCallback.bind(this);
@@ -54,6 +55,11 @@ class AddProduct extends Component {
               this.setState({ [e.target.name]: e.target.value });
         }
     }
+
+    handleChange2(evt) {
+        console.log(typeof evt.target.value);
+        this.setState({ amount: Number(evt.target.value) });
+  }
 
     createProductSuccessCallback(response) {   
         if (response.status === 200) {
@@ -161,7 +167,7 @@ class AddProduct extends Component {
                             required={true}
                             variant="outlined"
                             className={this.props.classes.textField}
-                            onChange={this.handleChange}
+                            onChange={this.handleChange2}
                             value={this.state.amount}
                             InputLabelProps={{
                                 shrink: true,
