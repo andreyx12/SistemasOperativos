@@ -142,6 +142,20 @@ router.put('/product/update', async (req, res) => {
     })
 });
 
+router.put('/product/update/amount', async (req, res) => {
+
+    Product.findOneAndUpdate({_id: req.body.id},{ $set : {'amount': req.body.amount}}, { new: true }, function (err, response) {
+        if (err) {
+           return res.sendStatus(500);
+           console.log(err)
+       } else {
+             res.send({
+                updatedDocument : response,
+            });
+        }
+    })
+});
+
 router.get('/product/edit', (req, res) => {
     res.render('socket');
 })

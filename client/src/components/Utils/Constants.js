@@ -5,6 +5,8 @@
 export const GET_PRODUCTS_URL = "/product"
 /* Actualizar contador de visualizaciones  */
 export const UPDATE_VIEWS_COUNTER_URL = "/product/update"
+/* Actualizar monto de producto  */
+export const UPDATE_PRODUCT_AMOUNT_URL = "/product/update/amount"
 /* Actualizar contador de visualizaciones  */
 export const CREATE_PRODUCT_URL = "/product/create"
 

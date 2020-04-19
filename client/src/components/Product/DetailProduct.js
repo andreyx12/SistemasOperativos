@@ -42,8 +42,10 @@ class DetailProduct extends Component {
         this.state = {
             comments: [],
             commentsLoading: true,
-            num1: 0,
-            result: 0,
+            num: '',
+            num2: '',
+            result: '',
+            amount: '', 
         };
         this.onClickSendComment = this.onClickSendComment.bind(this);
         this.createCommentSuccessCalback = this.createCommentSuccessCalback.bind(this);
@@ -51,6 +53,8 @@ class DetailProduct extends Component {
         this.getCommentsSuccessCalback = this.getCommentsSuccessCalback.bind(this);
         this.socketGetNewComment = this.socketGetNewComment.bind(this);
         this.handlenumChange = this.handlenumChange.bind(this);
+        this.addAction = this.addAction.bind(this); 
+        this.getProductsUpdateResponse = this.getProductsUpdateResponse.bind(this)
     }
 
     componentDidMount() {
@@ -91,13 +95,25 @@ class DetailProduct extends Component {
         }
     };
 
-    addAction=()=>{
-        this.setState({result: this.state.num1 + this.props.amount })
+    addAction=(response)=>{
+        let b = this.props.selectedProduct.amount.$numberDecimal
+        let x = Number(this.state.num) + Number(b)
+        this.setState({result: x })
+        console.log('resultado', x);
+
+        let data = {  
+            id: this.props.selectedProduct._id,
+            amount: x.toString()
+        }
+
+        console.log(data); 
+        ProductsDAO.updateProduct("/product/update/amount", data, this.getProductsUpdateResponse);       
+        document.getElementById('amount').innerHTML = 'Precio Actual: $' + x; 
     }
 
     handlenumChange (evt) {
         console.log(evt.target.value);
-        this.setState({ num1: Number(evt.target.value) });
+        this.setState({ num: Number(evt.target.value) });
     }
 
     handleClose = (event, reason) => {
@@ -108,6 +124,12 @@ class DetailProduct extends Component {
             openSuccessMessage: false
         })    
     };
+
+      getProductsUpdateResponse(response) {   
+        if (response.status === 200) {
+            console.console.log(response);                      
+        }
+    }
 
     render() {
         return (
@@ -125,7 +147,9 @@ class DetailProduct extends Component {
                     <Card>
                         <CardContent>
                             <Typography variant="h5" component="h2">
+                              <div id="amount">
                               Precio Actual: ${this.props.selectedProduct.amount.$numberDecimal}
+                             </div>
                             </Typography>
                             <Typography>
                                 Nombre del producto: {this.props.selectedProduct.name}
@@ -148,17 +172,13 @@ class DetailProduct extends Component {
                                 type="number"
                                 name="amount"
                                 fullWidth
-                                required={true}
                                 variant="outlined"
                                 className={this.props.classes.textField}
                                 onChange={this.handlenumChange}
-                                value={this.state.amount}
+                                value={this.state.num}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
-                                inputProps={{
-                                        maxLength: 20,
-                                    }}
                             />
                             <Box mt={1.5} mb={-0.1} >
                                 <Button
@@ -166,9 +186,10 @@ class DetailProduct extends Component {
                                     variant="contained"
                                     color="primary"
                                     size="large"
-                                    required={true}
+                                    type="submit"
                                     className={this.props.classes.btnAccept}
-                                    onClick={ () => this.addAction}
+                                    onClick={this.addAction} 
+                                    value="Add"
                                     startIcon={<MonetizationOnIcon />}
                                 >
                                     Pujar
