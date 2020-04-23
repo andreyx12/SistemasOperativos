@@ -72,6 +72,7 @@ class AddProduct extends Component {
                 amount: '',
                 openSuccessMessage: true
             })
+            window.$socket.emit(Constants.ADD_PRODUCT_EMIT, {nombre: response.data.updatedDocument.name});
         }
     }
 

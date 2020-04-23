@@ -118,6 +118,7 @@ class Home extends Component {
             showLoading: true,
             retryFlag: false,
             connectedUsers: '',
+            ProductList: [],
             activityStatusDrawer: ['Auto de carreras vendido', 'Set de mesa con sillas de baño vendido']
         };
         this.onItemClickHandler = this.onItemClickHandler.bind(this)
@@ -132,6 +133,14 @@ class Home extends Component {
       window.$socket.on(Constants.UPDATE_VIEWS_ON, this.socketUpdateElementCounter);
       window.$socket.on(Constants.CONNECTED_USERS_ON, this.socketTotalConnectedUsers);
       ProductsDAO.fetchProducts(Constants.GET_PRODUCTS_URL, this.getProductsResponse);
+      window.$socket.on(Constants.ADD_PRODUCT_ON, this.socketAddProduct);
+          }
+
+     socketAddProduct (data) {
+       console.log(data);
+     ///this.setState({
+       // connectedUsers: data.connectedUsers
+      //})
     }
 
     socketTotalConnectedUsers (data) {
@@ -197,6 +206,13 @@ class Home extends Component {
       ProductsDAO.updateProduct(Constants.UPDATE_VIEWS_COUNTER_URL, {id: selectedProduct._id}, this.getProductsUpdateResponse);
     }
 
+
+    notifyProduct = (response) => {
+      console.log(response); 
+    }
+
+
+
     onDeleteStatusValue = (e) => {
 
       let filteredArray = this.state.activityStatusDrawer.filter(item => item !== e)
@@ -252,7 +268,7 @@ class Home extends Component {
                       : <ProductList onClickDetailValue={this.onClickDetailValue} onChangePagination={this.onChangePagination} elements={this.state.data} paginationSize={this.state.paginationSize}></ProductList>;
                       
                     case Constants.ADD_ROUTE:
-                      return <AddProduct></AddProduct>;
+                      return <AddProduct notifyProduct={this.notifyProduct}></AddProduct>;
 
                     case Constants.ABOUT_ROUTE:
                         return <DetailProduct selectedProduct={this.state.selectedProduct}></DetailProduct>;

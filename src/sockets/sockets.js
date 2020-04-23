@@ -20,6 +20,10 @@ module.exports = function(io, app){
             io.emit('updateViews', data);
         });
 
+        socket.on('add_product', (data) => {
+            console.log('Paso por aqui'); 
+            io.emit('add_product', data);
+        });
         socket.on('updateComments', (data) => {
             io.emit('updateComments', data);
         });

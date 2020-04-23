@@ -22,3 +22,6 @@ export const UPDATE_VIEWS_EMIT = "updateViews"
 export const UPDATE_COMMENTS_ON = "updateComments"
 export const UPDATE_COMMENTS_EMIT = "updateComments"
 export const CONNECTED_USERS_ON = "connectedUsers"
+
+export const ADD_PRODUCT_ON = "add_product"
+export const ADD_PRODUCT_EMIT = "add_product"
